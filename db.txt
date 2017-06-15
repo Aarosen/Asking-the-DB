@@ -1,0 +1,11 @@
+1) SELECT COUNT (customerID) FROM orders WHERE customerID=3;
+2) SELECT COUNT (customerID) FROM orders WHERE customerID=(SELECT customerID FROM customers WHERE contactName='Jim Wood');
+3) SELECT COUNT (customerID) FROM orders WHERE customerID=(SELECT customerID FROM customers WHERE companyName='Slots Carpet');
+4) SELECT customers.companyName, COUNT(orders.customerID) AS TotalOrders FROM customers, orders WHERE customers.customerID = orders.customerID GROUP BY customers.companyName ORDER BY TotalOrders DESC;
+5) SELECT customers.companyName, COUNT(orders.customerID) AS TotalOrders FROM customers, orders WHERE customers.customerID = orders.customerID GROUP BY customers.companyName ORDER BY TotalOrders ASC;
+6) SELECT Company, MAX(MostOrders) FROM (SELECT customers.companyName AS Company, COUNT(orders.customerID) AS MostOrders FROM customers, orders WHERE customers.customerID = orders.customerID GROUP BY customers.companyName);
+7) SELECT customers.companyName, SUM(orderDetails.quantity) AS TotalItems FROM customers, orders, orderDetails WHERE customers.customerID = orders.customerID AND orders.orderID = orderDetails.orderID GROUP BY companyName ORDER BY TotalItems DESC;
+8) SELECT orderID, unitPrice * quantity AS TotalPrice FROM orderDetails WHERE orderID = 4;
+9) SELECT orderID, SUM(unitprice * quantity) AS TotalPrice FROM orderDetails GROUP BY orderID;
+10) SELECT orderID, SUM(unitprice * quantity) AS TotalPrice FROM orderDetails GROUP BY orderID HAVING TotalPrice > 1000;
+11) SELECT orderID, SUM(quantity) AS TotalPrice FROM orderDetails GROUP BY orderID;
